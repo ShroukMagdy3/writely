@@ -90,7 +90,8 @@ export default function PostCard({ post, onDelete, onBookmarkRemoved, isOwner: i
             <div className="flex items-center gap-1">
               <p className="text-xs text-zinc-500">
                 {new Date(post.createdAt).toLocaleDateString("en-US", {
-                  month: "short", day: "numeric", year: "numeric"
+                  month: "short", day: "numeric", year: "numeric",
+                  hour: "numeric", minute: "2-digit"
                 })}
               </p>
               <span className="text-zinc-600 text-xs">•</span>

@@ -13,8 +13,8 @@ export default function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await getAllPosts().reverse()
-        setPosts(data);
+        const { data } = await getAllPosts();
+        setPosts([...data].reverse());
       } catch {
         toast.error("please try again later");
       } finally {
