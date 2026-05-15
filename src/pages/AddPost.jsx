@@ -26,7 +26,7 @@ export default function AddPost() {
             newErrors.title = "Title must be at least 3 characters";
         if (!formData.description || formData.description.trim().length < 10)
             newErrors.description = "Description must be at least 10 characters";
-        if (!formData.imageUrl || !/^https?:\/\/.+/.test(formData.imageUrl))
+        if (formData.imageUrl.trim() && !/^https?:\/\/.+/.test(formData.imageUrl.trim()))
             newErrors.imageUrl = "Enter a valid image URL";
         return newErrors;
     };
@@ -40,7 +40,19 @@ export default function AddPost() {
         }
         setLoading(true);
         try {
-            await createPost(formData);
+            const postData = {
+                ...formData,
+                title: formData.title.trim(),
+                description: formData.description.trim(),
+            };
+
+            if (formData.imageUrl.trim()) {
+                postData.imageUrl = formData.imageUrl.trim();
+            } else {
+                delete postData.imageUrl;
+            }
+
+            await createPost(postData);
             toast.success("Post created!");
             navigate("/");
         } catch (err) {

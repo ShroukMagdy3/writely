@@ -28,7 +28,7 @@ export default function EditPost() {
       newErrors.title = "Title must be at least 3 characters";
     if (!formData.description || formData.description.trim().length < 10)
       newErrors.description = "Description must be at least 10 characters";
-    if (!formData.imageUrl || !/^https?:\/\/.+/.test(formData.imageUrl))
+    if (formData.imageUrl.trim() && !/^https?:\/\/.+/.test(formData.imageUrl.trim()))
       newErrors.imageUrl = "Enter a valid image URL";
     return newErrors;
   };
@@ -42,7 +42,12 @@ export default function EditPost() {
     }
     setLoading(true);
     try {
-      await updatePost(id, formData);
+      await updatePost(id, {
+        ...formData,
+        title: formData.title.trim(),
+        description: formData.description.trim(),
+        imageUrl: formData.imageUrl.trim(),
+      });
       toast.success("Post updated!");
       navigate("/");
     } catch (err) {

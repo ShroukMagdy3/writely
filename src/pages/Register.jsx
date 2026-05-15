@@ -38,7 +38,7 @@ export default function Register() {
     try {
       const { data } = await registerUser(formData);
       if (data.message == "success created") {
-        toast.success("Registration successful! 🎉");
+        toast.success("Registration successful!");
         navigate("/login");
       }
     } catch (error) {
