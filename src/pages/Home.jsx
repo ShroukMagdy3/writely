@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await getAllPosts();
+        const { data } = await getAllPosts().reverse()
         setPosts(data);
       } catch {
         toast.error("please try again later");
@@ -37,9 +37,8 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-black py-6">
+    <div className="min-h-screen bg-black py-2">
       <div className="max-w-2xl mx-auto px-4">
-
         {user && (
           <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 mb-6 shadow-md">
             <div className="flex items-center gap-3">
@@ -67,7 +66,6 @@ export default function Home() {
             </button>
           </div>
         )}
-
         {posts.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-64 gap-3">
             <span className="text-6xl"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 text-red-400">
@@ -91,7 +89,6 @@ export default function Home() {
             ))}
           </div>
         )}
-
       </div>
     </div>
   );

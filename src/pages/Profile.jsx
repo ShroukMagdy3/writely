@@ -58,7 +58,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen bg-black py-6">
+    <div className="min-h-screen bg-black py-2">
       <div className="max-w-2xl mx-auto px-4">
 
         <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6 mb-6">
